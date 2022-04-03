@@ -9,6 +9,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -42,7 +43,7 @@ public class ParticipantRestControllerTest {
 		participant.setLogin("testlogin");
 		participant.setPassword("testpassword");
 
-		Collection<Participant> allParticipants = singletonList(participant);
+		List<Participant> allParticipants = singletonList(participant);
 		given(participantService.getAll()).willReturn(allParticipants);
 
 		mvc.perform(get("/participants").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
