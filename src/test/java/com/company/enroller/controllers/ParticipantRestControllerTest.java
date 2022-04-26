@@ -8,7 +8,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import java.util.Collection;
 import java.util.List;
 
 import org.junit.Test;
@@ -25,7 +24,7 @@ import com.company.enroller.persistence.MeetingService;
 import com.company.enroller.persistence.ParticipantService;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest(ParticipantRestController.class)
+@WebMvcTest(ParticipantController.class)
 public class ParticipantRestControllerTest {
 
 	@Autowired
@@ -44,7 +43,7 @@ public class ParticipantRestControllerTest {
 		participant.setPassword("testpassword");
 
 		List<Participant> allParticipants = singletonList(participant);
-		given(participantService.getAll()).willReturn(allParticipants);
+		given(participantService.getAllParticipants()).willReturn(allParticipants);
 
 		mvc.perform(get("/participants").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(1))).andExpect(jsonPath("$[0].login", is(participant.getLogin())));

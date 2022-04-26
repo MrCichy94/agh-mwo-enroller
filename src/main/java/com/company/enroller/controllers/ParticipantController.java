@@ -3,7 +3,7 @@ package com.company.enroller.controllers;
 import java.net.URI;
 import java.util.Collection;
 import java.util.logging.Logger;
-import org.slf4j.LoggerFactory;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,18 +14,18 @@ import com.company.enroller.persistence.ParticipantService;
 
 @RestController
 @RequestMapping("/participants")
-public class ParticipantRestController {
+public class ParticipantController {
 
 	@Autowired
 	ParticipantService participantService;
 
-	private static final Logger logger = Logger.getLogger("ParticipantRestController DebugLog: ");
+	private static final Logger logger = Logger.getLogger("ParticipantController DebugLog: ");
 
 	@GetMapping("")
-	public ResponseEntity<?> getParticipants() {
-		Collection<Participant> participants = participantService.getAll();
+	public ResponseEntity<?> getAllParticipants() {
+		Collection<Participant> participants = participantService.getAllParticipants();
 		logger.info("Get all participants.");
-		return new ResponseEntity<Collection<Participant>>(participants, HttpStatus.OK);
+		return new ResponseEntity<>(participants, HttpStatus.OK);
 	}
 
 	@GetMapping("/{participantLogin}")

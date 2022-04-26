@@ -1,5 +1,6 @@
 package com.company.enroller.persistence;
 
+import java.util.Collection;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -21,7 +22,7 @@ public class ParticipantService {
 		connectorSession = connector.getSession();
 	}
 
-	public List<Participant> getAll() {
+	public Collection<Participant> getAllParticipants() {
 		String hql = "FROM Participant";
 		Query query = connectorSession.createQuery(hql);
 		return query.list();
